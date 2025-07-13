@@ -1,14 +1,101 @@
 :root {
-  --black: #201f1f;
+  --black: #1e1e1e;
   --white: #fff;
-  --accent: #00f2ea;
+  --heading: #fff;
+  --accent: #79affb;
+  --accent_red: #ff0050; /* TikTok Red */
   --accent-light: #aaffff;
+  --shadow_color: #056dfa;
   --text-gray: #cbd5e1;
   --glass-bg: rgba(255 255 255 / 0.08);
-  --shadow-glow: #00f2ea88;
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+/* Base badge styling */
+.badge {
+  border-radius: 5px;
+  font-size: 1.4rem;
+  padding: 0.1rem 0.5rem;
+}
 
+/* Animated sales badge */
+.badge--sales {
+  position: relative;
+  display: inline-block;
+  background-color: var(--accent_red);
+  width: auto;
+  margin-left: 20px;
+  height: 36px;
+  line-height: 2.2rem;
+  animation: bouncePulse 1s infinite;
+}
+
+/* Triangle tail */
+.badge--sales::before {
+  position: absolute;
+  left: -15px;
+  top: -0.5px;
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 18.8px solid transparent;
+  border-right: 18.8px solid var(--accent_red);
+  border-bottom: 18.8px solid transparent;
+}
+
+/* Dot decoration */
+.badge--sales::after {
+  display: block;
+  content: '';
+  position: absolute;
+  background: #000000;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  left: -5px;
+  top: calc(100% / 2 - 5px);
+}
+
+/* Animation keyframes */
+@keyframes bouncePulse {
+  0%, 100% {
+    transform: translateY(0);
+    background-color: var(--accent_red);
+  }
+  50% {
+    transform: translateY(-4px);
+    background-color: #ff0050; /* slightly lighter red for pulse */
+  }
+}
+
+
+
+/* Headings */
+h1, h2, h3 {
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 6rem;
+  color: var(--heading);
+}
+
+h2 {
+  font-size: 1.75rem;
+  color: var(--accent);
+}
+
+h3 {
+  font-size: 1.4rem;
+  color: var(--text);
+}
+
+/* Paragraphs and Lists */
+p {
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
 
 /* Container for background stars and rockets */
 body {
@@ -26,87 +113,7 @@ body {
   will-change: transform, opacity;
 }
 
-/* Star shape using box-shadow for multiple stars */
-.star {
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  box-shadow:
-    20px 30px white,
-    50px 80px white,
-    80px 20px white,
-    120px 90px white,
-    150px 40px white,
-    180px 70px white;
-    
-  animation: twinkle 5s infinite alternate;
-}
 
-/* Twinkle effect */
-@keyframes twinkle {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-/* Rocket shape: a simple triangle with a circle flame */
-.rocket {
-  width: 20px;
-  height: 40px;
-  background: transparent;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 40px solid #FE2C55; /* TikTok red */
-  border-radius: 4px;
-  position: fixed;
-  animation: fly 8s linear infinite;
-}
-
-/* Flame at bottom of rocket */
-.rocket::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  background: #00f2ea; /* TikTok aqua */
-  border-radius: 50%;
-  filter: blur(2px);
-  animation: flicker 0.8s ease-in-out infinite alternate;
-}
-
-/* Rocket flying upwards */
-@keyframes fly {
-  0% {
-    transform: translateX(0) translateY(100vh) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(50vw) translateY(-100vh) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* Flame flicker */
-@keyframes flicker {
-  0% {
-    opacity: 0.6;
-    transform: translateX(-50%) scale(1);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.3);
-  }
-}
 
 /* General styles */
 
@@ -144,9 +151,9 @@ header.hero-header {
   text-align: center;
   background: var(--black);
   overflow: hidden;
-  border-radius: 0 0 2.5rem 2.5rem;
-  box-shadow: 0 0 20px var(--shadow-glow);
-  backdrop-filter: blur(12px);
+  border-radius: 0 0 0.5rem 0.5rem;
+  /*box-shadow: 0 0 20px var(--shadow-glow);*/
+  
 }
 
 /* Abstract blurred shapes */
@@ -160,20 +167,11 @@ header.hero-header::after {
   z-index: 0;
 }
 
-header.hero-header::before {
-  width: 350px;
-  height: 350px;
-  background: var(--accent);
-  top: -100px;
-  left: -80px;
-}
 
 header.hero-header::after {
-  width: 250px;
-  height: 250px;
-  background: var(--accent-light);
-  bottom: -80px;
-  right: -60px;
+  width: 500%;
+  height:250px;
+  background: var(--shadow_color);
 }
 
 /* Content container */
@@ -185,18 +183,6 @@ header.hero-header::after {
   padding: 0 1rem;
 }
 
-/* 3D-style h1 */
-.header-content h1 {
-  font-size: 4rem;
-  font-weight: 900;
-  color: var(--white);
-  text-shadow:
-    3px 3px 5px #008080,
-    -2px -2px 4px #00f2ea88,
-    2px -2px 6px #00e6dccc;
-  margin-bottom: 1rem;
-  letter-spacing: 0.04em;
-}
 
 /* Subheading */
 .header-content p {
@@ -221,7 +207,7 @@ nav a {
   text-decoration: none;
   color: var(--white);
   font-weight: 700;
-  font-size: 1.125rem;
+  font-size: 1em;
   padding: 0.25rem 0;
   transition: color 0.3s ease;
   letter-spacing: 0.03em;
@@ -242,7 +228,7 @@ nav a::after {
 
 nav a:hover,
 nav a:focus {
-  color: var(--accent-light);
+  color: var(--accent);
 }
 
 nav a:hover::after,
@@ -252,7 +238,7 @@ nav a:focus::after {
 
 /* Call to action button */
 .cta-button {
-  background-color: #FE2C55; /* TikTok Red */
+  background-color: var(--accent_red); /* TikTok Red */
   color: white;
   font-weight: 700;
   padding: 1rem 2.5rem;
@@ -278,15 +264,7 @@ main {
   padding: 0 1.25rem;
 }
 
-/* Section headers */
-h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: var(--white);
-  text-shadow: 0 0 8px var(--accent);
-  letter-spacing: 0.04em;
-}
+
 
 /* Lists styling */
 ul {
@@ -302,6 +280,7 @@ ul {
 ul li {
   margin-bottom: 0.75rem;
   transition: color 0.3s ease;
+  text-align: center;
 }
 
 ul li:hover {
@@ -331,7 +310,9 @@ footer {
   font-size: 0.9rem;
   border-top: 1px solid var(--accent-light);
   user-select: none;
-}
+}/*li*/
+
+
 ul {
   list-style: none;
   padding: 0;
@@ -343,7 +324,7 @@ ul {
 
 ul li {
   background-color: var(--black);
-  padding: 1.5rem 2rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.6);
   font-weight: 600;
@@ -358,4 +339,68 @@ ul li:hover {
   box-shadow: 0 12px 20px rgba(0,0,0,0.8);
   background-color: #111; /* slight brighten on hover */
 }
+
+footer {
+  color: var(--accent) !important;
+  text-decoration: none !important;
+  text-align: center !important;
+}
+
+/*scroll*/
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 40px;
+  height: 60px;
+  background-color: var(--accent_red, #ff004f);
+  border: none;
+  border-radius: 20% 20% 50% 50%;
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+#scrollTopBtn::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 20px;
+  background: var(--accent_red, #ff004f);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+#scrollTopBtn::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 10px;
+  background: orange;
+  border-radius: 50%;
+  box-shadow: 0 0 6px 2px orange;
+  animation: flame 0.3s infinite alternate;
+}
+
+#scrollTopBtn:hover {
+  transform: translateY(-4px);
+}
+
+@keyframes flame {
+  from {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(-50%) scaleY(1.4);
+    opacity: 0.4;
+  }
+}
+
+
 
