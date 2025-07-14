@@ -10,11 +10,23 @@
   --glass-bg: rgba(255 255 255 / 0.08);
   --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+a {
+  text-decoration: none;      /* removes underline */
+  color: var(--white);             /* link color */
+  cursor: pointer;            /* hand icon on hover */
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent);             /* darker on hover */
+}
+
 /* Base badge styling */
 .badge {
   border-radius: 5px;
-  font-size: 1.4rem;
-  padding: 0.1rem 0.5rem;
+  font-size: 2rem;
+  padding: 0.1rem;
 }
 
 /* Animated sales badge */
@@ -23,24 +35,25 @@
   display: inline-block;
   background-color: var(--accent_red);
   width: auto;
-  margin-left: 20px;
-  height: 36px;
-  line-height: 2.2rem;
+  margin-left: 10px;
+  height: 40px;
+  line-height: 2rem;
   animation: bouncePulse 1s infinite;
 }
 
 /* Triangle tail */
 .badge--sales::before {
   position: absolute;
-  left: -15px;
-  top: -0.5px;
+  border-radius: 80px;
+  left: -13px;
+  top: 1px;
   content: '';
   display: block;
   width: 0;
   height: 0;
-  border-top: 18.8px solid transparent;
-  border-right: 18.8px solid var(--accent_red);
-  border-bottom: 18.8px solid transparent;
+  border-top: 19.8px solid transparent;
+  border-right: 19.8px solid var(--accent_red);
+  border-bottom: 19.8px solid transparent;
 }
 
 /* Dot decoration */
@@ -77,8 +90,12 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: 6rem;
-  color: var(--heading);
+  font-size: clamp(1.5rem, 4vw + 1rem, 6rem);
+  color: var(--white) !important;
+  font-weight: 6em !important;
+  text-shadow: none !important; /* remove text glow */
+  filter: none !important;       /* remove any filter glow */
+  -webkit-text-stroke: 0 !important; /* remove stroke if any */
 }
 
 h2 {
@@ -93,8 +110,9 @@ h3 {
 
 /* Paragraphs and Lists */
 p {
+  font-size: clamp(1rem, 2vw + 1rem, 1rem);
   margin-bottom: 1.25rem;
-  color: var(--text);
+  color: var(--text-gray);
 }
 
 /* Container for background stars and rockets */
@@ -117,21 +135,11 @@ body {
 
 /* General styles */
 
-h1, h2 {
-  color: var(--white) !important;
-  font-weight: 900 !important;
-  text-shadow: none !important; /* remove text glow */
-  filter: none !important;       /* remove any filter glow */
-  -webkit-text-stroke: 0 !important; /* remove stroke if any */
-}
-
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 
 body {
   font-family: var(--font-family);
@@ -268,8 +276,6 @@ main {
 
 /* Lists styling */
 ul {
-  margin-left: 2rem;
-  margin-bottom: 3rem;
   color: var(--text-gray);
   font-weight: 500;
   font-size: 1.125rem;
@@ -286,6 +292,16 @@ ul li {
 ul li:hover {
   color: var(--accent);
 }
+
+/* Subtext for list items */
+ul li small {
+  font-size: 0.85rem;      /* slightly smaller than main text */
+  color: #666;             /* soft gray for subtlety */
+  font-style: italic;      /* visual hierarchy */
+  display: block;          /* places it under the main text */
+  margin-top: 2px;         /* a little breathing room */
+}
+
 
 /* Contact links */
 #contacto a {
@@ -310,9 +326,10 @@ footer {
   font-size: 0.9rem;
   border-top: 1px solid var(--accent-light);
   user-select: none;
-}/*li*/
+}
 
 
+/* ul GRID*/
 ul {
   list-style: none;
   padding: 0;
@@ -320,6 +337,10 @@ ul {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-bottom: 3rem;
+}
+
+ul.bigger {
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 ul li {
@@ -401,6 +422,34 @@ footer {
     opacity: 0.4;
   }
 }
+
+/* Ribbon styles */
+.badge {
+  display: inline-block;
+  background-color: #ff004f;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  margin-right: 8px;
+  border-radius: 12px;
+  transform: rotate(-5deg);
+  animation: float 3s ease-in-out infinite;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+  position: relative;
+}
+
+/* Optional floating effect */
+@keyframes float {
+  0%, 100% {
+    transform: rotate(-5deg) translateY(0px);
+  }
+  50% {
+    transform: rotate(-5deg) translateY(-4px);
+  }
+}
+
 
 
 
