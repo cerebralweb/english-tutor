@@ -22,11 +22,21 @@ a:hover {
   color: var(--accent);             /* darker on hover */
 }
 
-/* Base badge styling */
+/* HEADER badge styling */
 .badge {
-  border-radius: 5px;
-  font-size: 2rem;
-  padding: 0.1rem;
+  display: inline-block;
+  background-color: #ff004f;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  margin-right: 8px;
+  border-radius: 12px;
+  transform: rotate(-5deg);
+  animation: float 1s ease-in-out infinite;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+  position: relative;
 }
 
 /* Animated sales badge */
@@ -120,18 +130,6 @@ body {
   position: relative;
   overflow-x: hidden;
 }
-
-/* Common styles for all floating objects */
-.floating-object {
-  position: fixed;
-  pointer-events: none;
-  opacity: 0.6;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  will-change: transform, opacity;
-}
-
-
 
 /* General styles */
 
@@ -261,6 +259,7 @@ nav a:focus::after {
 
 .cta-button:hover,
 .cta-button:focus {
+  color: var(--white);
   transform: scale(1.05);
   outline: none;
 }
@@ -343,6 +342,10 @@ ul.bigger {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
+ul.biggest {
+  grid-template-columns: repeat(auto-fit, minmax(650px, 1fr));
+}
+
 ul li {
   background-color: var(--black);
   padding: 0.5rem 0.5rem;
@@ -405,7 +408,7 @@ footer {
   background: orange;
   border-radius: 50%;
   box-shadow: 0 0 6px 2px orange;
-  animation: flame 0.3s infinite alternate;
+  animation: flame 0.08s infinite alternate;
 }
 
 #scrollTopBtn:hover {
@@ -424,7 +427,7 @@ footer {
 }
 
 /* Ribbon styles */
-.badge {
+.ribbon {
   display: inline-block;
   background-color: #ff004f;
   color: #fff;
@@ -434,7 +437,7 @@ footer {
   margin-right: 8px;
   border-radius: 12px;
   transform: rotate(-5deg);
-  animation: float 3s ease-in-out infinite;
+  animation: float 1s ease-in-out infinite;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   z-index: 10;
   position: relative;
@@ -449,6 +452,54 @@ footer {
     transform: rotate(-5deg) translateY(-4px);
   }
 }
+
+/*Packs ribbon*/
+
+
+.packs_ribbon {
+  display: inline-block;
+  background-color: var(--shadow_color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  margin-right: 8px;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  z-index: 10;
+  position: relative;
+  
+}
+
+@keyframes glow-every-5s {
+  0%   { box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
+  10%  { box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+  20%  { box-shadow: 0 0 16px rgba(255, 255, 255, 0.8); }
+  30%  { box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+  40%  { box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
+  50%  { box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
+  100% { box-shadow: 0 0 0px rgba(255, 255, 255, 0); }
+}
+
+.glow {
+  display: inline-block;
+  background-color: var(--shadow_color);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  margin-right: 8px;
+  border-radius: 12px;
+  z-index: 10;
+  position: relative;
+  animation: glow-every-5s 3s ease-in-out infinite;
+}
+
+
+
+
+
+
 
 
 

@@ -8,7 +8,7 @@
 
   // Show/hide button on scroll
   window.addEventListener('scroll', function() {
-    if (window.pageYOffset > 850) {
+    if (window.pageYOffset > 500) {
       btn.style.display = 'block';
     } else {
       btn.style.display = 'none';
